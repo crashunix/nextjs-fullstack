@@ -8,7 +8,7 @@ export default async function Home() {
     <main>
       <h2 className='text-blue-200'>Hello, Next 13 🔥</h2>
       <ul>
-        {res.results.map((movie: any) => (
+        {res.results.map(movie => (
           <div>
             <h3>{movie.title}</h3>
           </div>
