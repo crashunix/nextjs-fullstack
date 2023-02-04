@@ -1,18 +1,13 @@
 import Link from 'next/link';
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { MovieCardModel } from '@/models/MovieCardModel';
 
-export default function Movie({ id, title, poster_path, release_date, skeleton }) {
+export default function MovieCard({ id, title, poster_path, release_date }: MovieCardModel) {
     
-    if(skeleton) {
-        return (
-            <div className='w-full h-20 animate-pulse'></div>
-        )
-    }
-
     const imagePath = 'https://image.tmdb.org/t/p/original'
 
-    const getDate = (release_date) => {
+    const getDate = (release_date: string) => {
         return formatDistance(new Date(release_date), new Date(), { addSuffix: true, locale: ptBR })
     }
 

@@ -1,4 +1,4 @@
-export default async function MovieDetail({params}) {
+export default async function MovieDetail({params}: any) {
 
     const movieId = params.movieId;
 
