@@ -1,5 +1,6 @@
 import './globals.css'
 import { Montserrat } from '@next/font/google';
+import Link from 'next/link';
 
 const montserrat = Montserrat({
   weight: ['400', '700'],
@@ -17,14 +18,35 @@ export default function RootLayout({children}) {
       <head />
       <body className={`${montserrat.className}`}>
         <header>
-          <h1>Logo</h1>
-          <nav>
-            <ul>
-              <li>Home</li>
-              <li>About</li>
-              <li>Sign Up</li>
-            </ul>
-          </nav>
+          <div className="container">
+            <div className="flex justify-between items-center">
+              <h1 className='text-xl'>Youtunix</h1>
+              <nav>
+                <ul className='flex items-center space-x-4'>
+                  {[
+                    {
+                      label: "Home",
+                      path: "/"
+                    },
+                    {
+                      label: "Favorites",
+                      path: "/favorites"
+                    },
+                    {
+                      label: "About",
+                      path: "/about"
+                    }
+                  ].map(item => (
+                    <li key={item.label}>
+                      <Link href={item.path}>
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </div>
         </header>
         {children}
       </body>
