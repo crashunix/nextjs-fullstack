@@ -20,7 +20,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <header>
           <div className="container">
             <div className="flex justify-between items-center">
-              <h1 className='text-xl'>Youtunix</h1>
+              <h1 className='text-xl'>NextJS Fullstack</h1>
               <nav>
                 <ul className='flex items-center space-x-4'>
                   {[

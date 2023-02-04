@@ -1,27 +1,25 @@
-import { MovieModel } from '@/models/MovieModel';
-import { MovieCardModel } from '@/models/MovieCardModel';
-import MovieCard from './MovieCard';
+import PostForm from "./PostForm";
+
+async function getPosts() {
+  const res = await fetch(`${process.env.BASE_URL}/api/getPosts`);
+  if(!res.ok) {
+    console.log(res);
+    // throw new Error('Failed to fetch');
+  }
+  return res.json();
+}
 
 export default async function Home() {
-
-  const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}`);
-  const res = await data.json();
-  console.log(res);
+  
+  const posts = await getPosts();
 
   return (
     <main>
       <h2 className='text-blue-200'>Hello, Next 13 🔥</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10">
-        {res.results.map((movie: MovieModel) => (
-          <MovieCard
-            id={movie.id}
-            title={movie.title}
-            poster_path={movie.poster_path}
-            release_date={movie.release_date}
-            key={movie.id}
-          />
-        ))}
-      </div>
+      <PostForm></PostForm>
+      {posts.map((post: {id: number, title: string}) => (
+        <div key={post.id}>Post - {post.title}</div>
+      ))}
     </main>
   )
 }
